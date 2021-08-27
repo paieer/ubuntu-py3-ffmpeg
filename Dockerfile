@@ -13,12 +13,11 @@ RUN apt-get -qq -y update \
   && cd /usr/local/bin \
   && ln -s /usr/bin/python3 python \
   && pip3 --no-cache-dir install --upgrade pip \
-  && pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U \
   && pip3 --no-cache-dir install --upgrade selenium youtube-dl PyVirtualDisplay requests \
   && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get -qq -y update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -qq -y install \
+    apt-get -qq -y install \
         wget \
         curl \
         git \
@@ -29,6 +28,7 @@ RUN apt-get -qq -y update && \
         vim \
         software-properties-common && \
     mv /usr/bin/lsb_release /usr/bin/lsb_release.bak && \
+    apt-get -y upgrade && \
     apt-get -y autoclean && \
     apt-get -y autoremove && \
     rm -rf /var/lib/apt/lists/*
