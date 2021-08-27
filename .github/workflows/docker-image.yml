@@ -47,10 +47,6 @@ jobs:
         with:
           # 是否 docker push
           push: true
-          # 生成多平台镜像, see https://github.com/docker-library/bashbrew/blob/v0.1.1/architecture/oci-platform.go
-          platforms: |
-            linux/386
-            linux/amd64
           # docker build arg, 注入 APP_NAME/APP_VERSION
           build-args: |
             APP_NAME=${{ env.APP_NAME }}
