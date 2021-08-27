@@ -3,8 +3,11 @@ FROM ubuntu:20.04
 USER root
 WORKDIR /root
 
+ARG DEBIAN_FRONTEND=noninteractive
+# ENV TZ=Europe/Moscow
+
 SHELL [ "/bin/bash", "-c" ]
-    
+
 RUN apt-get -qq -y update \
   && apt-get install -y python3-pip python3-dev ffmpeg firefox firefox-geckodriver xvfb \
   && cd /usr/local/bin \
