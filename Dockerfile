@@ -4,10 +4,13 @@ USER root
 WORKDIR /root
 
 ARG DEBIAN_FRONTEND=noninteractive
-# ENV TZ=Europe/Moscow
+ENV TZ Asia/Shanghai
 
 SHELL [ "/bin/bash", "-c" ]
 
+RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone
+    
 RUN apt-get -qq -y update \
   && apt-get install -y python3-pip python3-dev ffmpeg firefox firefox-geckodriver xvfb \
   && cd /usr/local/bin \
@@ -28,7 +31,6 @@ RUN apt-get -qq -y update && \
         vim \
         software-properties-common && \
     mv /usr/bin/lsb_release /usr/bin/lsb_release.bak && \
-    apt-get -y upgrade && \
     apt-get -y autoclean && \
     apt-get -y autoremove && \
     rm -rf /var/lib/apt/lists/*
