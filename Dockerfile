@@ -16,7 +16,7 @@ RUN apt-get -qq -y update \
   && cd /usr/local/bin \
   && ln -s /usr/bin/python3 python \
   && pip3 --no-cache-dir install --upgrade pip \
-  && pip3 --no-cache-dir install --upgrade selenium youtube-dl PyVirtualDisplay requests \
+  && pip3 --no-cache-dir install --upgrade selenium youtube-dl PyVirtualDisplay requests goto-statement \
   && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get -qq -y update && \
